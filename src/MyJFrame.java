@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MyJFrame extends JFrame {
 
@@ -10,7 +11,6 @@ public class MyJFrame extends JFrame {
 
         //текстовые поле для отображения выбранного файла
         MyJTextField txtField = new MyJTextField();
-        txtField.addActionListener(txtField);
 
         //текстовое поле для поиска текста
         JTextField txtField2 = new JTextField("Поиск текста");

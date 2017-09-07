@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyJTextField extends JTextField implements ActionListener {
+public class MyJTextField extends JTextField {
     private String t;
 
     MyJTextField() {
@@ -17,8 +17,8 @@ public class MyJTextField extends JTextField implements ActionListener {
         this.t = t;
     }
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent st) {
         setText(t);
-    }
+    }*/
 }
