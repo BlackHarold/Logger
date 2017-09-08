@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 public class MainLoggerFrame {
 
+    String filePath;
+
     public static void main(String[] args) {
 
         //применяем скин для программы
@@ -21,7 +23,7 @@ public class MainLoggerFrame {
         MyJFrame cfFrame = new MyJFrame("Приложение LOGGER_v0.01", 800, 600);
 
         //1. текстовые поле для отображения выбранного файла
-        MyJTextField txtField = new MyJTextField();
+        JTextField txtField = new JTextField();
         //2. текстовая область отображает содержание выбраного файла
         JTextPane txtPane = new JTextPane();
         //3. текстовое поле для поиска текста
@@ -36,26 +38,18 @@ public class MainLoggerFrame {
         MyFileChooser fileChooser = new MyFileChooser();
         fileChooser.addActionListener(fileChooser);
 
-        cfButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //обработчик события для разных кнопок
-                if (cfButton.getName().equalsIgnoreCase("Выбор файла")) {
-                    System.out.println("Нажата кнопка " + "\"" + cfButton.getName() + "\"");
-                    fileChooser.showOpenDialog(null);
-                    fileChooser.setVisible(true);
-                    //dialog.getSelectedFile(String.valueOf(fileChooser.getSelectedFile()));
-                    //System.out.println(dialog.filePath);
-                }
+        cfButton.addActionListener(e -> {
+            //обработчик события для разных кнопок
+            if (cfButton.getName().equalsIgnoreCase("Выбор файла")) {
+                System.out.println("Нажата кнопка " + "\"" + cfButton.getName() + "\"");
+                fileChooser.showOpenDialog(null);
+                txtField.setText(fileChooser.filePath);
             }
         });
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (okButton.getName().equalsIgnoreCase("OK")) {
-                    System.out.println("Нажата кнопка " + "OK");
+        okButton.addActionListener(e -> {
+            if (okButton.getName().equalsIgnoreCase("OK")) {
+                System.out.println("Нажата кнопка " + "OK");
 
-                }
             }
         });
         cfButton.setFocusable(false);
