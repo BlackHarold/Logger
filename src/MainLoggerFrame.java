@@ -12,13 +12,6 @@ public class MainLoggerFrame {
 
     public static void main(String[] args) {
 
-        //применяем скин для программы
-        try {
-            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            System.out.println("Неудачная попытка создания окна");
-        }
-
         //главная форма (смотри класс)
         MyJFrame cfFrame = new MyJFrame("Приложение LOGGER_v0.01", 800, 600);
 
@@ -29,15 +22,15 @@ public class MainLoggerFrame {
         //3. текстовое поле для поиска текста
         JTextField txtField2 = new JTextField("Поиск текста");
 
-        //кнопки | добавление слушателей | снятие фокуса
+        // кнопки
         MyOpenButton cfButton = new MyOpenButton("Выбор файла", "Выбор файла");
         MyOpenButton okButton = new MyOpenButton("OK", "OK");
-        //MyOpenDialog dialog = new MyOpenDialog();
 
-        //выбор файла смотри класс MyFileChooser
+        //выбор файла -> смотри класс MyFileChooser
         MyFileChooser fileChooser = new MyFileChooser();
         fileChooser.addActionListener(fileChooser);
 
+        // описание работы кнопки "Выбор файла"
         cfButton.addActionListener(e -> {
             //обработчик события для разных кнопок
             if (cfButton.getName().equalsIgnoreCase("Выбор файла")) {
@@ -46,31 +39,34 @@ public class MainLoggerFrame {
                 txtField.setText(fileChooser.filePath);
             }
         });
+
+        //описание работы кнопки "ОК" (пока только пишет хлам
         okButton.addActionListener(e -> {
             if (okButton.getName().equalsIgnoreCase("OK")) {
                 System.out.println("Нажата кнопка " + "OK");
-
             }
         });
-        cfButton.setFocusable(false);
-        okButton.setFocusable(false);
 
+        //назначение подчинения расположения для панелей
         JPanel panel_1 = new JPanel(new BorderLayout());
         JPanel panel_2 = new JPanel(new BorderLayout());
         JPanel panel_3 = new JPanel(new BorderLayout());
 
+        //1. добавленеие элементов на панель_1 (верх окна)
         panel_1.add(cfButton, BorderLayout.WEST);
         panel_1.add(txtField, BorderLayout.CENTER);
         panel_1.add(okButton, BorderLayout.EAST);
 
+        //добавление рамок на все панели
         Border etched = BorderFactory.createEtchedBorder();
         panel_1.setBorder(etched);
         panel_2.setBorder(etched);
         panel_3.setBorder(etched);
 
+        //2. добавленеие элементов на панель_2 (центр окна)
         panel_2.add(txtPane);
 
-        //расположение элементов в панели_3 (низ окна)
+        //3. расположение элементов в панели_3 (низ окна)
         panel_3.add(txtField2);
 
         //расположение элементов на фрейме согласно сторонам света

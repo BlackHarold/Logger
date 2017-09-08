@@ -4,14 +4,13 @@ import java.awt.event.ActionListener;
 
 class MyFileChooser extends JFileChooser implements ActionListener {
 
-    static String filePath;
+    String filePath = null;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (APPROVE_OPTION == 0) {
+        if (APPROVE_OPTION == 0 && this.getSelectedFile() != null) {
             filePath = String.valueOf(this.getSelectedFile());
-            System.out.println(filePath);
-            this.setVisible(false);
-        }
+            System.out.println(filePath);}
+
     }
 }
