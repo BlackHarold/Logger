@@ -10,7 +10,11 @@ class MyFileChooser extends JFileChooser implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (APPROVE_OPTION == 0 && this.getSelectedFile() != null) {
             filePath = String.valueOf(this.getSelectedFile());
-            System.out.println(filePath);}
+            System.out.println(filePath);
+
+
+
+        }
 
     }
 }

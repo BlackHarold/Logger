@@ -1,16 +1,12 @@
-import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.*;
 
 public class MainLoggerFrame {
 
-    String filePath;
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException, FileNotFoundException {
 
         //главная форма (смотри класс)
         MyJFrame cfFrame = new MyJFrame("Приложение LOGGER_v0.01", 800, 600);
@@ -22,6 +18,9 @@ public class MainLoggerFrame {
         //3. текстовое поле для поиска текста
         JTextField txtField2 = new JTextField("Поиск текста");
 
+        //буфер обмена
+        //MyBufferReader myBufferReader = new MyBufferReader(txtField.getText());
+
         // кнопки
         MyOpenButton cfButton = new MyOpenButton("Выбор файла", "Выбор файла");
         MyOpenButton okButton = new MyOpenButton("OK", "OK");
@@ -29,6 +28,7 @@ public class MainLoggerFrame {
         //выбор файла -> смотри класс MyFileChooser
         MyFileChooser fileChooser = new MyFileChooser();
         fileChooser.addActionListener(fileChooser);
+        MyBufferReader myBufferReader = new MyBufferReader();
 
         // описание работы кнопки "Выбор файла"
         cfButton.addActionListener(e -> {
@@ -37,6 +37,22 @@ public class MainLoggerFrame {
                 System.out.println("Нажата кнопка " + "\"" + cfButton.getName() + "\"");
                 fileChooser.showOpenDialog(null);
                 txtField.setText(fileChooser.filePath);
+                FileInputStream fis = null;
+                try {
+                    fis = new FileInputStream((fileChooser.filePath).toString());
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+                //FileOutputStream fos = new FileOutputStream("");
+
+                try {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                //BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(fos));
+                myBufferReader.setPath();
+                //myBufferReader.doRead();
             }
         });
 
